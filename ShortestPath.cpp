@@ -17,7 +17,7 @@ int relax(std::pair<int,int> origin,std::pair<int,int> sample,int relaxedEdge)
 void printOptions()
 {
 		std::cout<<"Available Options: "<<std::endl;
-		std::cout<<"1.Add edge: "<<std::endl;
+		std::cout<<"1.Add edge "<<std::endl;
 		std::cout<<"2.Find the shortest path "<<std::endl;
 		std::cout<<"Your choice: "<<std::endl;
 }
@@ -65,17 +65,20 @@ void main(void)
 					int t = indicator.first;
 					auto needUpdated = std::find_if(priorityQueue.heapTree.begin(),
 													priorityQueue.heapTree.end(),
-													[&t](const std::pair<int,int>& val)
+													[&t](const std::pair<int,int> val)
 													{ return val.first == t;});
 					needUpdated->second = relax(result,*needUpdated,indicator.second);
+					priorityQueue.siftdown(0);
 				}
 			}
 			break;
 		}
 	}
 	}
+	std::cout << "The path: " << std::endl;
 	for (int i =0; i< keepTrack.size();i++)
 	{
-		std::cout<<keepTrack[i] <<std::endl;
+		std::cout<<keepTrack[i] <<" ";
 	}
+	system("pause");
 }
