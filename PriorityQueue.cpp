@@ -52,7 +52,6 @@ std::pair<int,int> PriorityQueue::extractMin()
 	std::pair<int,int> result = heapTree[0];
 	heapTree[0] = heapTree[n-1];
 	heapTree.resize(n-1);
-	siftdown(0);
 	return result;
 }
 
